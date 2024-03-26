@@ -221,7 +221,7 @@ public class MainActivityFragment extends Fragment {
         return name.substring(name.indexOf('-') + 1).replace('_', ' ');
     }
 
-    private OnClickListener guessButtonListener = new OnClickListener(){
+    private final OnClickListener guessButtonListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             Button guessButton = ((Button) v);
@@ -229,21 +229,20 @@ public class MainActivityFragment extends Fragment {
             String answer = getCountryName(correctAnswer);
             ++totalGuesses;
 
-            if(guess.equals(answer)){
+            if (guess.equals(answer)) {
                 ++correctAnswers;
                 answerTextView.setText(answer + "!");
                 answerTextView.setTextColor(getResources().getColor(R.color.correct_answer, getContext().getTheme()));
 
                 disableButton();
 
-                if(correctAnswers == FLAGS_IN_QUIZ){
-                    DialogFragment quizResults = new DialogFragment(){
+                if (correctAnswers == FLAGS_IN_QUIZ) {
+                    DialogFragment quizResults = new DialogFragment() {
                         @NonNull
                         @Override
                         public Dialog onCreateDialog(@Nullable Bundle bundle) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            builder.setMessage(getString(R.string.results, totalGuesses,(1000/(double)totalGuesses)));
-
+                            builder.setMessage(getString(R.string.results, totalGuesses, (1000 / (double) totalGuesses)));
                             builder.setPositiveButton(R.string.reset_quiz, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int id) {
@@ -253,11 +252,10 @@ public class MainActivityFragment extends Fragment {
                             return builder.create();
                         }
                     };
-
+                    quizResults.show(getParentFragmentManager(), "Результат:");
                     quizResults.setCancelable(false);
-                    quizResults.show(getFragmentManager(), "quiz results");
-                }
-                else {
+
+                } else {
                     handler.postDelayed(
                             new Runnable() {
                                 @Override
@@ -267,8 +265,7 @@ public class MainActivityFragment extends Fragment {
                             }, 2000);
 
                 }
-            }
-            else {
+            } else {
                 flagImageView.startAnimation(shakeAnimation);
 
                 answerTextView.setText(R.string.incorrect_answer);
@@ -278,9 +275,9 @@ public class MainActivityFragment extends Fragment {
         }
 
         private void disableButton() {
-            for(int row = 0; row<guessRows; row++){
+            for (int row = 0; row < guessRows; row++) {
                 LinearLayout guessRow = guessLinearLayouts[row];
-                for(int i = 0; i<guessRow.getChildCount(); i++){
+                for (int i = 0; i < guessRow.getChildCount(); i++) {
                     guessRow.getChildAt(i).setEnabled(false);
                 }
             }

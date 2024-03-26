@@ -1,18 +1,27 @@
 <resources>
     <string name="app_name">Flag</string>
-    <string name="number_of_choices">Number of Choices</string>
-    <string name="world_regions">Regions</string>
-    <string name="world_regions_description">Regions to include in the quiz</string>
-    <string name="guess_country">Guess the Country</string>
-    <string name="results">%1$d guesses, %2$.02f%% correct</string>
-    <string name="incorrect_answer">Incorrect!</string>
-    <string name="default_region_message">One region must be selected. Setting North America as the default region</string>
-    <string name="restarting_quiz">Quiz will restart with your new settings</string>
-    <string name="question">Question %1$d of %2$d</string>
-    <string name="reset_quiz">Reset Quiz</string>
-    <string name="image_description">Image of the current flag in the quiz</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Main_fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="number_of_choices">Количество вариантов ответа</string>
+    <string name="world_regions">Регионы</string>
+    <string name="number_of_choices_description">Отобразите 2, 4, 6 или 8 кнопок угадывания</string>
+    <string name="world_regions_description">Регионы для включения в тест</string>
+    <string name="guess_country">Угадай страну</string>
+    <string name="results">%1$d угадано, %2$.02f%% правильно</string>
+    <string name="incorrect_answer">Неправильно!</string>
+    <string name="default_region_message">Необходимо выбрать один регион. Установка Северной Америки в качестве региона по умолчанию</string>
+    <string name="restarting_quiz">Тест будет перезапущен с вашими новыми настройками</string>
+    <string name="question">Вопрос %1$d из %2$d</string>
+    <string name="reset_quiz">Сбросить тест</string>
+    <string name="image_description">Изображение текущего флага в викторине</string>
     <string name="default_region">North_America</string>
-    <string name="number_of_choices_description">Display 2, 4, 6 or 8 guess buttons</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_settings">Settings</string>
+
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
@@ -20,6 +29,8 @@
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
+
+    <string name="SettingsActivity">Default reply action</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
@@ -29,7 +40,4 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_settings">Settings</string>
-
-    <string name="action_settings">Settings</string>
 </resources>

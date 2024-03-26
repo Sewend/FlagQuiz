@@ -19,8 +19,6 @@ import android.widget.Toast;
 
 import java.util.Set;
 
-
-
 public class MainActivity extends AppCompatActivity {
     public static  final String CHOICES = "pref_numberOfChoices";
     public static  final String REGIONS = "pref_regionsToInclude";
@@ -76,37 +74,33 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private final OnSharedPreferenceChangeListener preferecesChangedListener = new OnSharedPreferenceChangeListener(){
-        @SuppressLint("MutatingSharedPrefs")
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @Nullable String key) {
-            preferecesChanged = true;
+    private final OnSharedPreferenceChangeListener preferecesChangedListener = (sharedPreferences, key) -> {
+        preferecesChanged = true;
 
-            MainActivityFragment quizFragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.quizFragment);
-            assert key != null;
-            if(key.equals(CHOICES)){
+        MainActivityFragment quizFragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.quizFragment);
+        assert key != null;
+        if(key.equals(CHOICES)){
+            assert quizFragment != null;
+            quizFragment.updateGuessRows(sharedPreferences);
+            quizFragment.resetQuiz();
+        }
+        else if(key.equals(REGIONS)) {
+            Set<String> regions = sharedPreferences.getStringSet(REGIONS, null);
+
+            if (regions != null && regions.size() > 0) {
                 assert quizFragment != null;
-                quizFragment.updateGuessRows(sharedPreferences);
+                quizFragment.updateRegions(sharedPreferences);
                 quizFragment.resetQuiz();
-            }
-            else if(key.equals(REGIONS)){
-                Set<String> regions = sharedPreferences.getStringSet(REGIONS, null);
+            } else {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                assert regions != null;
+                regions.add(getString(R.string.default_region));
+                editor.putStringSet(REGIONS, regions);
+                editor.apply();
 
-                if (regions != null && regions.size()>0){
-                    assert quizFragment != null;
-                    quizFragment.updateRegions(sharedPreferences);
-                    quizFragment.resetQuiz();
-                }
-                else{
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    assert regions != null;
-                    regions.add(getString(R.string.default_region));
-                    editor.putStringSet(REGIONS, regions);
-                    editor.apply();
-
-                    Toast.makeText(MainActivity.this, R.string.default_region_message, Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(MainActivity.this, R.string.default_region_message, Toast.LENGTH_SHORT).show();
             }
+            Toast.makeText(MainActivity.this, R.string.restarting_quiz, Toast.LENGTH_SHORT).show();
         }
     };
 }

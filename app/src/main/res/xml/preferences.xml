@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <ListPreference
-        android:entries="@array/guesses_list"
-        android:entryValues="@array/guesses_list"
-        android:key="pref_numberOfChoices"
-        android:title="@string/number_of_choices"
-        android:summary="@string/number_of_choices_description"
-        android:persistent="true"
-        android:defaultValue="4"/>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <MultiSelectListPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="@array/regions_list"
         android:entries="@array/regions_list_for_settings"
         android:entryValues="@array/regions_list"
         android:key="pref_regionsToInclude"
-        android:title="@string/world_regions"
-        android:persistent="true"
+        android:persistent="false"
         android:summary="@string/world_regions_description"
-        android:defaultValue="@array/regions_list"/>
+        android:title="@string/world_regions" />
+
+    <ListPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="4"
+        android:entries="@array/guesses_list"
+        android:entryValues="@array/guesses_list"
+        android:key="pref_numberOfChoices"
+        android:persistent="true"
+        android:summary="@string/number_of_choices_description"
+        android:title="@string/number_of_choices" />
+
 </PreferenceScreen>
