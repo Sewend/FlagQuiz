@@ -9,7 +9,7 @@
         android:entries="@array/regions_list_for_settings"
         android:entryValues="@array/regions_list"
         android:key="pref_regionsToInclude"
-        android:persistent="false"
+        android:persistent="true"
         android:summary="@string/world_regions_description"
         android:title="@string/world_regions" />
 

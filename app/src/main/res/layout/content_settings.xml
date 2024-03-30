@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="600dp"
+    android:layout_marginTop="55dp"
     android:id="@+id/settingsFragment"
     android:name="com.example.flag.SettingsActivityFragment"
     android:layout="@layout/fragment_settings">

@@ -2,6 +2,7 @@ package com.example.flag;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -9,16 +10,11 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -28,13 +24,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import android.view.View.OnClickListener;
 import java.util.Set;
 
 public class MainActivityFragment extends Fragment {
@@ -113,7 +113,6 @@ public class MainActivityFragment extends Fragment {
     public void updateRegions(SharedPreferences sharedPreferences) {
         regionsSet = sharedPreferences.getStringSet(MainActivity.REGIONS, null);
     }
-
     public void resetQuiz() {
         AssetManager assets = getActivity().getAssets();
         fileNameList.clear();
@@ -121,8 +120,9 @@ public class MainActivityFragment extends Fragment {
         try{
             for(String region : regionsSet){
                 String[] paths = assets.list(region);
-                for (String paht : paths)
-                    fileNameList.add(paht.replace(".png", ""));
+                assert paths != null;
+                for (String part : paths)
+                    fileNameList.add(part.replace(".png", ""));
             }
         }
         catch (IOException exception){
@@ -222,6 +222,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     private final OnClickListener guessButtonListener = new OnClickListener() {
+        @SuppressLint("SetTextI18n")
         @Override
         public void onClick(View v) {
             Button guessButton = ((Button) v);
